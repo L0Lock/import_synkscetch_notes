@@ -1,12 +1,23 @@
+bl_info = {
+    "name": "Import Syncsketch Notes",
+    "author": "Loïc Dautry (L0Lock)",
+    "version": (0, 0, 1),
+    "blender": (3, 3, 0),
+    "location": "File > Import > Syncsketch Notes",
+    "description": "Imports Syncsketch's notes as camera background sequence."
+                   "On Syncsketch, you need to download \"Maya greasepencil File...\")",
+    "warning": "In development!",
+    "doc_url": "https://github.com/L0Lock/import_synkscetch_notes",
+    "support": 'COMMUNITY',
+    "category": "Import-Export",
+}
+
 import bpy
 import zipfile, os, glob, fnmatch
 from bpy_extras.io_utils import ImportHelper
 from bpy.types import Operator
 from bpy.props import StringProperty
 from bpy.utils import register_class
-
-# C:\Users\Roikku\Documents\Taff\Perso\Animation\Shorts\Emotional Scars Never Heal!\greasepencil\08_splining_074_0001-0118.greasepencil.zip
-### Import Syncsketch Notes  - ISN
 
 class ISN_OT_import_zip(Operator, ImportHelper):
     """Imports Syncsketch's notes (Maya greasepencil zip) as camera background sequence."""
@@ -63,8 +74,6 @@ class ISN_OT_import_zip(Operator, ImportHelper):
         bg.image_user.frame_start = 1
         bg.frame_method = 'CROP'
         
-            
-#        print(next(glob.iglob(join(notesTarget, ".png"))))
         return {'FINISHED'}
 
 def menu_func_import(self, context):
@@ -81,7 +90,5 @@ def unregister():
 
 
 if __name__ == "__main__":
+    unregister()
     register()
-
-    # test call
-#    bpy.ops.isn.import_zip('INVOKE_DEFAULT')
