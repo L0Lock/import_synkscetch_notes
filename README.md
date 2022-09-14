@@ -24,7 +24,5 @@ Click it, navigate to your zip file, and it will automatically clear any remaini
 
 ## Limitations & future development:
 
-- [x] ~~Currently not an addon, hard to install once for good;~~
-- [ ] Removes all preceeding background images of your camera. Ideally it should only delete the ones made by the importer itself;
 - [ ] Could be nice to somehow import written notes;
-- [ ] Maybe try to convince Syncsketch's devs to add a new download specific to Blender with only the frames and written notes in a .CSV.
+- [ ] Could be nice to somehow not have to download notes and comments separately.
