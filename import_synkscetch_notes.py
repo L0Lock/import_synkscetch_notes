@@ -1,7 +1,7 @@
 bl_info = {
     "name": "Import Syncsketch Notes",
     "author": "Loïc Dautry (L0Lock)",
-    "version": (0, 0, 1),
+    "version": (0, 0, 2),
     "blender": (3, 3, 0),
     "location": "File > Import > Syncsketch Notes",
     "description": "Imports Syncsketch's notes as camera background sequence."
@@ -62,7 +62,12 @@ class ISN_OT_import_zip(Operator, ImportHelper):
             
         cam = bpy.context.scene.camera
         
-        bpy.context.scene.camera.data.background_images.clear()
+        for bgi in cam.data.background_images:
+            if bgi.image and bgi.image.name == 'SyncsketchNotes':
+                cam.data.background_images.remove(bgi)
+                bpy.data.images.remove(bpy.data.images["SyncsketchNotes"])
+                cam.data.background_images.update()
+                break
 
         img = bpy.data.images.load(notePath)
         img.source = 'SEQUENCE'
@@ -73,6 +78,8 @@ class ISN_OT_import_zip(Operator, ImportHelper):
         bg.image_user.frame_duration = bpy.context.scene.frame_end
         bg.image_user.frame_start = 1
         bg.frame_method = 'CROP'
+        
+        cam.data.background_images.update()
         
         return {'FINISHED'}
 
