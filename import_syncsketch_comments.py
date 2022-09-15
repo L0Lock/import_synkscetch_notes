@@ -124,7 +124,7 @@ class ISN_PT_syncsketch(CameraButtonsPanel, Panel):
             row.label(text=f'{Author}')
             row.label(text=f'noted on {Date}')
             row.alignment = 'LEFT'
-            box.label(text='―'*int(width/9))
+            box.label(text='·'*int(width*1.64))
             for text in Comment: 
 #                box.(align = True)
                 box.alignment = 'EXPAND'
