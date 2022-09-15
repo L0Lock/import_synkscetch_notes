@@ -4,6 +4,7 @@ from bpy.props import IntProperty
 from rna_prop_ui import PropertyPanel
 from bl_ui.utils import PresetPanel
 import csv
+import textwrap
 
 class CameraButtonsPanel:
     bl_space_type = 'PROPERTIES'
@@ -38,21 +39,62 @@ class ISN_PT_syncsketch(CameraButtonsPanel, Panel):
         engine = context.engine
         return context.camera
 
+    def _getCsvList(self):
+        
+#        csvFile = open("C:\\Users\\Roikku\\Documents\\Repositories\\import_synkscetch_notes\\Workbench\\test.csv", "r")
+        # outfile = open("C:\\Users\\Roikku\\Documents\\Repositories\\import_synkscetch_notes\\Workbench\\SynckSketchComments.md", "w")
+        quote_character='"'
+        delimiter=','
+
+        with open("C:\\Users\\Roikku\\Documents\\Repositories\\import_synkscetch_notes\\Workbench\\test.csv", "r") as csvFile:
+            reader = csv.DictReader(csvFile, delimiter=delimiter, quotechar=quote_character, restkey='unrecognized_cols')
+            csvList = list()
+            for dictionary in reader:
+                csvList.append(dictionary)
+        return(csvList)
+
+    def _dpi_scale(self):
+        return bpy.context.preferences.system.pixel_size
+    
+    def _region_width(self):
+        return bpy.context.region.width
+    
+    def _char_width(self):
+        rawWidth = self._region_width()
+        width = (rawWidth*0.9)/6
+        
+        # apply scale factor for retina screens etc
+        width = int(width / self._dpi_scale())
+        # padding to account for some kerning
+#        self.wrap = width/7
+        
+        return width
+    
+    def _wrapper(self, textTowrap ):
+        wrapp = textwrap.TextWrapper(self._char_width(),)
+        wrapList = wrapp.wrap(text=textTowrap) 
+        
+        return wrapList
+
     def draw(self, context):
         layout = self.layout
         layout.use_property_split = True
 
         cam = context.camera
-        
-        infile = open("C:\\Users\\Roikku\\Documents\\Repositories\\import_synkscetch_notes\\Workbench\\12575762_08_Splining_074_0001-0118_2022-09-14-020950262677.csv", "r")
-        outfile = open("C:\\Users\\Roikku\\Documents\\Repositories\\import_synkscetch_notes\\Workbench\\SynckSketchComments.md", "w")
-        infile.readline()
-        last_pos = infile.tell()
-        split_line = infile.readline().split(",")
-        ReviewName = split_line[1]
-        ItemName = split_line[3]
-        split_link = split_line[11].split("#")
-        ItemLink = split_link[0]
+        width = self._char_width()
+
+        csvList = self._getCsvList()
+
+        ReviewName = csvList[1]["Review Name"]
+        ItemName = csvList[1]["Item Name"]
+        ItemLink = csvList[1]["Link"].split("#")[0]
+        # csvFile.readline()
+        # last_pos = csvFile.tell()
+        # split_line = csvFile.readline().split(",")
+        # ReviewName = split_line[1]
+        # ItemName = split_line[3]
+        # split_link = split_line[11].split("#")
+        # ItemLink = split_link[0]
 
         row=layout.row()
         box=layout.box()
@@ -64,14 +106,14 @@ class ISN_PT_syncsketch(CameraButtonsPanel, Panel):
 
         row=layout.row()
         
-        infile.seek(last_pos)
+        # csvFile.seek(last_pos)
         # Loop line by line extracting variables for the fields
         # Export the file as a markdown file.
-        for line in infile.readlines():
-            split_line = line.split(",")
-            NoteFrame = split_line[6]
-            Author = split_line[10]
-            Comment = split_line[8]
+        for line in csvList:
+            NoteFrame = line["Frame Number"]
+            Author = line["Full Name"]
+            Comment = self._wrapper(line["Comment"])
+            Date = line["Date Created"].split(' ')[0]
             box=layout.box()
             box.scale_y = 1
             row=box.row()
@@ -79,12 +121,18 @@ class ISN_PT_syncsketch(CameraButtonsPanel, Panel):
             props = row.operator("isn.jump_to_frame", text="", icon='NEXT_KEYFRAME')
             props.frameJump = int(NoteFrame)
             row=box.row()
-            box.label(text=f'{Author} noted: {Comment}')
-            
-            
-#            print(f'| {NoteFrame} | *{Author}*:<br/>{Comment} |',file=outfile)
-        infile.close()
-        outfile.close()
+            row.label(text=f'{Author}')
+            row.label(text=f'noted on {Date}')
+            row.alignment = 'LEFT'
+            box.label(text='―'*int(width/9))
+            for text in Comment: 
+#                box.(align = True)
+                box.alignment = 'EXPAND'
+                box.label(text=text)
+#            box.label(text=f'{Comment}')
+            # print(f'| {NoteFrame} | *{Author}*:<br/>{Comment} |',file=outfile)
+        # csvFile.close()
+        # outfile.close()
         
 classes = (
     ISN_OT_jumpToFrame,
