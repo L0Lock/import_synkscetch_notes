@@ -64,8 +64,8 @@ class ISN_OT_import_zip(Operator, ImportHelper):
         
         for bgi in cam.data.background_images:
             if bgi.image and bgi.image.name == 'SyncsketchNotes':
-                cam.data.background_images.remove(bgi)
                 bpy.data.images.remove(bpy.data.images["SyncsketchNotes"])
+                cam.data.background_images.remove(bgi)
                 cam.data.background_images.update()
                 break
 
