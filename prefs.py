@@ -34,7 +34,7 @@ class ISNPreferences(AddonPreferences):
 
     panel_category: StringProperty(
         name="Panel Category",
-        description="Category to show \"Import Syncsketch Notes\" panel",
+        description="Category to show \"Syncsketch Feedback\" panel",
         default="Animation",
         update=_panel_category_update,
     )
@@ -44,5 +44,5 @@ class ISNPreferences(AddonPreferences):
 
         row = layout.row()
         col = row.column()
-        col.label(text="Set the category to show Bone-Widgets panel:")
+        col.label(text="Set the category to show the \"Syncsketch Feedback\" panel:")
         col.prop(self, "panel_category")
