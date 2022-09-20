@@ -8,7 +8,7 @@ from .operators import (
 )
 
 class ISN_MT_syncsketch_import(Menu):
-    bl_label = "Syncsketch Import"
+    bl_label = "Syncsketch"
     bl_idname = 'isn.import_menu'
 
     def draw(self, context):

@@ -3,12 +3,10 @@
 bl_info = {
     "name": "Import Syncsketch Notes - Pack",
     "author": "Loïc Dautry (L0Lock)",
-    "version": (0, 0, 3),
+    "version": (1, 0, 0),
     "blender": (3, 3, 0),
-    "location": "View3D > Sidebar > Animation tab > Syncsketch Notes",
-    "description": "Imports Syncsketch's notes and comments."
-                   "On Syncsketch, you need to download notes from \"Maya greasepencil File...\" and comments from the CSV file.",
-    "warning": "In development!",
+    "location": "View3D > Sidebar > Animation tab > Syncsketch Feedback panel",
+    "description": "Import and manage notes or comments from Syncsketch.com.",
     "doc_url": "https://github.com/L0Lock/import_synkscetch_notes",
     "wiki_url": "",
     "tracker_url": "https://github.com/L0Lock/import_synkscetch_notes/issues",
