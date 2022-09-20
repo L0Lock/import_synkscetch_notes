@@ -6,14 +6,22 @@ from distutils import dir_util, file_util
 # I use a custom directory to avoid having to reinstall addons at each new Blender version
 # If you want to do the same, don't forget to add that path to Blender > Edit menu > Preferences > File Paths tab > Scripts
 
-targetFolder="C:\\AppInstall\\Blender\\MyScripts\\addons\\"
+targetFolder="C:\\AppInstall\\Blender\\MyScripts\\addons\\import_synkscetch_notes\\"
+os.makedirs(targetFolder, exist_ok=True)
+
 
 # Input files and folders. See examples from lines 16 to 19
 # Folders will be copied with their full content.
 # Put them between '' marks, coma between elements, one per line.
 # You can write in absolute and relative paths, I chose relative for simplicity.
 
-inputFiles=['import_synkscetch_notes.py',
+inputFiles=['__init__.py',
+			'bl_class_registry.py',
+			'functions.py',
+			'menus.py',
+			'operators.py',
+			'panels.py',
+			'prefs.py',
 			]
 
 for src in inputFiles:
