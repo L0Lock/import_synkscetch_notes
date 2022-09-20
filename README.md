@@ -1,6 +1,9 @@
 # Import Synkscetch Notes
 
-Addon for Blender to import and manage notes or comments from Syncsketch.com
+Addon for Blender to import and manage notes or comments from Syncsketch.com:
+
+![example](https://user-images.githubusercontent.com/16049822/191262247-606ca697-593f-4554-8554-e33561665980.png)
+
 
 ## Installation
 
