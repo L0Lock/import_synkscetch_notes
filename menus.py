@@ -9,13 +9,14 @@ from .operators import (
 
 class ISN_MT_syncsketch_import(Menu):
     bl_label = "Syncsketch Import"
+    bl_idname = 'isn.import_menu'
 
     def draw(self, context):
         layout = self.layout
         layout.operator(ISN_OT_import_zip.bl_idname, text="Notes", icon='GREASEPENCIL')
         layout.operator(ISN_OT_import_csv.bl_idname, text="Comments", icon='FILE_TEXT')
 
-def draw_menu():
+def draw_menu(self, context):
     self.layout.menu(ISN_MT_syncsketch_import.bl_idname)
 
 
