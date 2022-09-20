@@ -1,28 +1,39 @@
 # Import Synkscetch Notes
 
-Addon for Blender to import notes from Syncsketch.com
+Addon for Blender to import and manage notes or comments from Syncsketch.com
 
 ## Installation
 
-- Download [import_synkscetch_notes.py](https://raw.githubusercontent.com/L0Lock/import_synkscetch_notes/main/import_synkscetch_notes.py);
-- open it in Blender's *text editor*;
-- Execute it with the Run button
+- Download the [latest release](/releases/latest);
+- In Blender, go to *Edit* > *Preferences* > *Addons* category;
+- Hit the *Install* button and select the `import_synkscetch_notes_versionNumber.zip`
+- Enable the addon
+
+The addon preferences allow you to chose in which tab of the viewport's sidebar will be located the *Syncsketch Feedback* panel. By default, it is located in the *Animation* tab:
+
+![Addon location and preferences](https://user-images.githubusercontent.com/16049822/191252764-ff78b734-1375-4111-8a28-da1ff38f00f2.png)
+
 
 ## Usage
 
-From Syncsketch, download the "Maya Grease Pencile File" of your notes:
+### Downloading notes and comments on Syncsketch.com
 
-![Syncsketch download](https://user-images.githubusercontent.com/16049822/189382632-60cbac33-639a-40e7-8b32-a14c338060ce.png)
+In this addon, "notes" are the raw sketches draw on your syncsketch reviews, "comments" are the text comments written on the side.
 
-It will download a `shot_name.greasepencil.zip` file.
+On Syncsketch, you can download the "Maya Grease Pencile File" as your notes, and the "Item notes as CSV" as your comments:
 
-After installing the importer, go in the regular Import menu:
+![Syncsketch download](https://user-images.githubusercontent.com/16049822/191250840-009a6271-8658-4a1f-aa3e-1579f207c988.png)
 
-![import menu](https://user-images.githubusercontent.com/16049822/189382090-c6d17928-d9c2-4e42-8aed-9596cc2f4a53.png)
+You will end up with a `shot_name.greasepencil.zip` and a `.CSV` file.
 
-Click it, navigate to your zip file, and it will automatically clear any remaining background image from your active camera and setup your Syncsketch notes.
+### Loading notes and comments
 
-## Limitations & future development:
+You can either use the import menu under *File* > *Import*:
 
-- [ ] Could be nice to somehow import written notes;
-- [ ] Could be nice to somehow not have to download notes and comments separately.
+![import menu](https://user-images.githubusercontent.com/16049822/191251450-6f8e6928-e6ea-4a28-a4e8-bbc9d92c18f9.png)
+
+Or you can go in the *3d Viewport* > *Sidebar* > *Animation* tab > *Syncsketch Feedback* panel, and use the import buttons to load your notes and comments:
+
+![panel UI](https://user-images.githubusercontent.com/16049822/191252992-0c1f96e4-2ade-4b07-93aa-1817487cb0e1.png)
+
+
