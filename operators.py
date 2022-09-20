@@ -65,6 +65,9 @@ class ISN_OT_import_zip(Operator, ImportHelper):
         bg.image_user.frame_duration = bpy.context.scene.frame_end
         bg.image_user.frame_start = 1
         bg.frame_method = 'CROP'
+        bg.display_depth = 'FRONT'
+        bg.alpha = 1
+
         
         cam.data.background_images.update()
         
