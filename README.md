@@ -4,7 +4,7 @@ Addon for Blender to import and manage notes or comments from Syncsketch.com
 
 ## Installation
 
-- Download the [latest release](/releases/latest);
+- Download the [latest release](https://github.com/L0Lock/import_synkscetch_notes/releases/latest);
 - In Blender, go to *Edit* > *Preferences* > *Addons* category;
 - Hit the *Install* button and select the `import_synkscetch_notes_versionNumber.zip`
 - Enable the addon
